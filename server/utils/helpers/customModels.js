@@ -43,6 +43,7 @@ const SUPPORT_CUSTOM_MODELS = [
   "cohere",
   "zai",
   "giteeai",
+  "aibadgr",
   // Embedding Engines
   "native-embedder",
   "cohere-embedder",
@@ -116,6 +117,8 @@ async function getCustomModels(provider = "", apiKey = null, basePath = null) {
       return await getOpenRouterEmbeddingModels();
     case "giteeai":
       return await getGiteeAIModels(apiKey);
+    case "aibadgr":
+      return await getAiBadgrModels(apiKey);
     default:
       return { models: [], error: "Invalid provider for custom models" };
   }
@@ -611,6 +614,23 @@ async function getGiteeAIModels() {
     };
   });
   return { models, error: null };
+}
+
+async function getAiBadgrModels(apiKey = null) {
+  const _apiKey =
+    apiKey === true
+      ? process.env.AIBADGR_API_KEY
+      : apiKey || process.env.AIBADGR_API_KEY || null;
+  try {
+    const { aiBadgrModels } = require("../AiProviders/aiBadgr");
+    const models = await aiBadgrModels(_apiKey);
+    if (models.length > 0 && !!_apiKey)
+      process.env.AIBADGR_API_KEY = _apiKey;
+    return { models, error: null };
+  } catch (error) {
+    console.error("Error in getAiBadgrModels:", error);
+    return { models: [], error: "Failed to fetch AI Badgr models" };
+  }
 }
 
 async function getXAIModels(_apiKey = null) {
