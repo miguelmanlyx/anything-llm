@@ -43,7 +43,7 @@ async function aiBadgrModels(apiKey = null) {
 
     // Filter and transform models into the expected format
     // Only include chat models
-    const validModels = response.body
+    const validModels = response.data
       .filter((model) => {
         // Filter out non-chat models if possible
         return true; // Accept all models for now
