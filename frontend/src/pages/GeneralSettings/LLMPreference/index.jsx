@@ -37,6 +37,7 @@ import MoonshotAiLogo from "@/media/llmprovider/moonshotai.png";
 import CometApiLogo from "@/media/llmprovider/cometapi.png";
 import FoundryLogo from "@/media/llmprovider/foundry-local.png";
 import GiteeAILogo from "@/media/llmprovider/giteeai.png";
+import AiBadgrLogo from "@/media/llmprovider/aibadgr.png";
 
 import PreLoader from "@/components/Preloader";
 import OpenAiOptions from "@/components/LLMSelection/OpenAiOptions";
@@ -71,6 +72,7 @@ import DellProAiStudioOptions from "@/components/LLMSelection/DPAISOptions";
 import MoonshotAiOptions from "@/components/LLMSelection/MoonshotAiOptions";
 import FoundryOptions from "@/components/LLMSelection/FoundryOptions";
 import GiteeAIOptions from "@/components/LLMSelection/GiteeAIOptions/index.jsx";
+import AiBadgrOptions from "@/components/LLMSelection/AiBadgrOptions";
 
 import LLMItem from "@/components/LLMSelection/LLMItem";
 import { CaretUpDown, MagnifyingGlass, X } from "@phosphor-icons/react";
@@ -354,6 +356,14 @@ export const AVAILABLE_LLM_PROVIDERS = [
     options: (settings) => <GiteeAIOptions settings={settings} />,
     description: "Run GiteeAI's powerful LLMs.",
     requiredConfig: ["GiteeAIApiKey"],
+  },
+  {
+    name: "AI Badgr",
+    value: "aibadgr",
+    logo: AiBadgrLogo,
+    options: (settings) => <AiBadgrOptions settings={settings} />,
+    description: "Run open source and proprietary models from AI Badgr.",
+    requiredConfig: ["AiBadgrApiKey"],
   },
   {
     name: "Generic OpenAI",
