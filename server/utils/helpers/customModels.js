@@ -624,8 +624,7 @@ async function getAiBadgrModels(apiKey = null) {
   try {
     const { aiBadgrModels } = require("../AiProviders/aiBadgr");
     const models = await aiBadgrModels(_apiKey);
-    if (models.length > 0 && !!_apiKey)
-      process.env.AIBADGR_API_KEY = _apiKey;
+    if (models.length > 0 && !!_apiKey) process.env.AIBADGR_API_KEY = _apiKey;
     return { models, error: null };
   } catch (error) {
     console.error("Error in getAiBadgrModels:", error);
